@@ -27,7 +27,7 @@ fi
 # shellcheck disable=SC1090,SC1091
 . "$TOOLS/functestlib.sh"
 
-TESTNAME="kmscube"
+TESTNAME="KMSCube"
 FRAME_COUNT=999
 EXPECTED_FRAMES=$((FRAME_COUNT - 1))
 test_path=$(find_test_case_by_name "$TESTNAME")
@@ -59,10 +59,12 @@ if kmscube --count="$FRAME_COUNT" > "$LOG_FILE" 2>&1; then
     else
         log_fail "$TESTNAME : Expected output not found (Rendered $EXPECTED_FRAMES frames)"
         echo "$TESTNAME FAIL" > "$RES_FILE"
+        exit 1
     fi
 else
     log_fail "$TESTNAME : Execution failed (non-zero exit code)"
     echo "$TESTNAME FAIL" > "$RES_FILE"
+    exit 1
 fi
 
 if [ "$weston_was_running" -eq 1 ]; then
