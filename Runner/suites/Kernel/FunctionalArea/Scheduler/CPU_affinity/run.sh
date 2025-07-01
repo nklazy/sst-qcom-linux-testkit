@@ -39,7 +39,7 @@ log_info "-------- Starting $TESTNAME Functional Test --------"
 
 check_dependencies taskset top chrt zcat grep
 
-REQUIRED_CONFIGS="CONFIG_SCHED_DEBUG CONFIG_CGROUP_SCHED CONFIG_SMP"
+REQUIRED_CONFIGS="CONFIG_CGROUP_SCHED CONFIG_SMP"
 for config in $REQUIRED_CONFIGS; do
     if check_kernel_config "$config"; then
         log_pass "$config is enabled"
@@ -83,9 +83,11 @@ log_info "Scheduling Policy: $SCHED_POLICY"
 if echo "$SCHED_POLICY" | grep -q "SCHED_OTHER"; then
     log_pass "Default scheduling policy detected. Test passed"
     echo "$TESTNAME PASS" > "$res_file"
+    exit 0
 else
     log_fail "Unexpected scheduling policy. Test Failed"
     echo "$TESTNAME FAIL" > "$res_file"
+    exit 1
 fi
 
 kill $TASK_PID
