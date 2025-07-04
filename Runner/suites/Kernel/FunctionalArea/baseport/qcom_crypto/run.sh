@@ -29,8 +29,6 @@ fi
 # shellcheck disable=SC1090,SC1091
 . "$TOOLS/functestlib.sh"
 
-#!/bin/bash
-
 TESTNAME="qcom_crypto"
 test_path=$(find_test_case_by_name "$TESTNAME")
 cd "$test_path" || exit 1
@@ -61,7 +59,7 @@ if [ "$ENCRYPT_OUTPUT" != "$EXPECTED_ENCRYPT" ]; then
     log_info "Got     : $ENCRYPT_OUTPUT"
     TEST_PASSED=false
 else
-    log_info "Encryption test passed"
+    log_pass "Encryption test passed"
 fi
 
 # Decryption Test
@@ -79,7 +77,7 @@ if [ "$DECRYPT_OUTPUT" != "$EXPECTED_DECRYPT" ]; then
     log_info "Got     : $DECRYPT_OUTPUT"
     TEST_PASSED=false
 else
-    log_info "Decryption test passed"
+    log_pass "Decryption test passed"
 fi
 
 # HMAC-SHA256 Test
@@ -98,7 +96,7 @@ if [ "$HMAC_OUTPUT" != "$EXPECTED_HMAC" ]; then
     log_info "Got     : $HMAC_OUTPUT"
     TEST_PASSED=false
 else
-    log_info "HMAC-SHA256 test passed"
+    log_pass "HMAC-SHA256 test passed"
 fi
 
 # Final Result

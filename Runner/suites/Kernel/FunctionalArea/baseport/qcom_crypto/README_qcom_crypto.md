@@ -46,7 +46,7 @@ git clone <this-repo>
 cd <this-repo>
 scp -r common Runner user@target_device_ip:/<user-defined-location>
 ssh user@target_device_ip 
-cd /<user-defined-location>/Runner && ./run-test.sh qcom_hwrng
+cd /<user-defined-location>/Runner && ./run-test.sh qcom_crypto
 
 Sample output:
 sh-5.2# ./run-test.sh qcom_crypto
